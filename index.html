@@ -1,113 +1,558 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - SOS INFO LUDO</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #fff; }
-        .card { transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3); border-color: #38bdf8; }
-        .gradient-text { background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludovic Tourniquet — S.O.S INFO LUDO</title>
+<meta name="description" content="Logiciels Windows conçus par un technicien informatique : AndroidTvPcIsoBuilder, Pulse, Cadran, Coffre et outils d'atelier. S.O.S INFO LUDO, Boulogne-sur-Mer.">
+<meta property="og:title" content="Ludovic Tourniquet — S.O.S INFO LUDO">
+<meta property="og:description" content="Des logiciels pensés à l'établi, par un technicien informatique de Boulogne-sur-Mer.">
+<meta property="og:image" content="https://lerapeurdu62280-debug.github.io/Mon-Portfolio/assets/01-accueil.png">
+<meta name="theme-color" content="#0A0B0E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0B0E'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-style='italic' font-size='30' fill='%233DDC84' text-anchor='middle'%3ELT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0E;
+  --bg-2:#0E1014;
+  --panel:#111318;
+  --panel-2:#15181E;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#ECEEF2;
+  --muted:#8B92A0;
+  --dim:#5C6370;
+  --green:#3DDC84;
+  --blue:#8AB8FF;
+  --champagne:#D9C7A1;
+  --orange:#E8722C;
+  --brass:#C9A24B;
+  --cyan:#35D6F0;
+  --radius:18px;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--green);color:#06140C}
+
+/* grain + halo */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.halo{position:absolute;inset:0 0 auto 0;height:1100px;pointer-events:none;z-index:0;
+  background:radial-gradient(60% 50% at 50% 0%,rgba(61,220,132,.10),transparent 70%),radial-gradient(40% 40% at 85% 20%,rgba(138,184,255,.08),transparent 70%);mask-image:linear-gradient(#000 55%,transparent);-webkit-mask-image:linear-gradient(#000 55%,transparent)}
+.grid-lines{position:absolute;inset:0 0 auto 0;height:1100px;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:72px 72px;mask-image:radial-gradient(70% 60% at 50% 0%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(70% 60% at 50% 0%,#000 30%,transparent 80%);opacity:.5}
+
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 32px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.eyebrow.muted{color:var(--dim)}
+.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
+h1,h2,h3{font-weight:700;letter-spacing:-.025em;line-height:1.08;text-wrap:balance}
+.nw{white-space:nowrap}
+.section{padding-top:140px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px;flex-wrap:wrap}
+.section-head h2{font-size:clamp(34px,4.6vw,56px);max-width:720px;margin-top:16px}
+.section-head p{color:var(--muted);max-width:380px;font-size:15.5px}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line-2),transparent);margin:0}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(10,11,14,.78);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:14.5px;letter-spacing:.02em}
+.mono-mark{width:34px;height:34px;border-radius:10px;border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--green);background:var(--panel)}
+.nav-links{display:flex;gap:34px;font-size:14px;color:var(--muted)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:12px;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s;white-space:nowrap}
+.btn-primary{background:linear-gradient(180deg,#9CC4FF,#6FA3F5);color:#0A1426;box-shadow:0 10px 30px -10px rgba(138,184,255,.6),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(138,184,255,.7),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-green{background:var(--green);color:#06140C;box-shadow:0 10px 30px -12px rgba(61,220,132,.7)}
+.btn-green:hover{transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+.btn-sm{padding:10px 16px;font-size:13.5px;border-radius:10px}
+.arrow{transition:transform .2s}
+.btn:hover .arrow,.link:hover .arrow{transform:translateX(3px)}
+
+/* hero */
+.hero{padding-top:190px;text-align:center}
+.hero h1{font-size:clamp(46px,7.6vw,100px);margin:26px auto 0;max-width:1000px;letter-spacing:-.04em}
+.hero h1 .serif{color:var(--champagne);font-size:1.08em}
+.hero .lead{text-wrap:pretty;color:var(--muted);font-size:clamp(17px,1.6vw,19px);max-width:640px;margin:28px auto 0}
+.hero .ctas{display:flex;gap:14px;justify-content:center;margin-top:42px;flex-wrap:wrap}
+.status-pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 10px;border:1px solid var(--line-2);border-radius:999px;background:rgba(255,255,255,.02);font-size:13px;color:var(--muted)}
+.status-pill b{color:var(--text);font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(61,220,132,.15);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(61,220,132,0)}}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:110px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact{padding:30px 28px;text-align:left;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact .n{font-family:var(--serif);font-size:44px;line-height:1;color:var(--text)}
+.fact .l{font-size:13.5px;color:var(--muted);margin-top:10px}
+
+/* flagship */
+.flagship{position:relative;border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,var(--panel),var(--bg-2));overflow:hidden}
+.flagship::before{content:"";position:absolute;inset:-1px;border-radius:28px;padding:1px;background:linear-gradient(140deg,rgba(61,220,132,.45),transparent 30%,transparent 70%,rgba(138,184,255,.35));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.flag-top{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding:64px 64px 0}
+.flag-top h3{font-size:clamp(32px,3.6vw,48px);margin-top:18px}
+.flag-top h3 .serif{color:var(--green)}
+.flag-top .desc{color:var(--muted);margin-top:20px;font-size:16.5px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.tag{font-family:var(--mono);font-size:11.5px;padding:6px 10px;border:1px solid var(--line-2);border-radius:8px;color:var(--muted);letter-spacing:.02em}
+.tag.on{color:var(--green);border-color:rgba(61,220,132,.35);background:rgba(61,220,132,.06)}
+.flag-list{list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.flag-list li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.flag-list .k{font-family:var(--mono);font-size:12px;color:var(--dim);padding-top:3px}
+.flag-list b{display:block;font-weight:600;font-size:15.5px}
+.flag-list span{color:var(--muted);font-size:14.5px}
+.flag-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;align-items:center}
+.flag-ctas small{color:var(--dim);font-size:12.5px;font-family:var(--mono)}
+
+.shot-zone{padding:56px 64px 64px}
+.shot-tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.shot-tab{font-family:var(--mono);font-size:12px;padding:8px 14px;border-radius:9px;border:1px solid var(--line);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s}
+.shot-tab:hover{color:var(--text);border-color:var(--line-2)}
+.shot-tab[aria-selected="true"]{color:var(--text);background:rgba(255,255,255,.05);border-color:var(--line-2)}
+.window{border-radius:16px;border:1px solid var(--line-2);background:#000;box-shadow:0 60px 120px -40px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.6),0 30px 80px -30px rgba(61,220,132,.18);overflow:hidden;position:relative}
+.window img{width:100%;height:auto;transition:opacity .35s}
+.window img.fade{opacity:0}
+
+/* suite */
+.suite{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s}
+.card:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.card .visual{height:230px;position:relative;display:grid;place-items:center;border-bottom:1px solid var(--line);overflow:hidden}
+.card .body{padding:28px 28px 30px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:26px;margin-top:12px}
+.card p{color:var(--muted);font-size:15px;margin-top:12px}
+.card ul{list-style:none;margin-top:20px;display:grid;gap:9px;font-size:14px;color:#C3C8D1}
+.card ul li{display:flex;gap:10px;align-items:baseline}
+.card ul li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none;transform:translateY(-2px)}
+.card .foot{margin-top:auto;padding-top:26px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11.5px;color:var(--dim);letter-spacing:.04em}
+.badge{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:7px;border:1px solid var(--line-2);color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.badge.ok{color:var(--green);border-color:rgba(61,220,132,.35)}
+.badge.dev{color:var(--champagne);border-color:rgba(217,199,161,.35)}
+
+.v-pulse{--accent:var(--cyan);background:radial-gradient(60% 70% at 50% 50%,rgba(53,214,240,.14),transparent 70%),#0B1116}
+.v-cadran{--accent:var(--orange);background:radial-gradient(60% 70% at 50% 60%,rgba(232,114,44,.16),transparent 70%),linear-gradient(180deg,#151515,#0D0D0D)}
+.v-coffre{--accent:var(--brass);background:radial-gradient(60% 70% at 50% 50%,rgba(201,162,75,.16),transparent 70%),repeating-linear-gradient(90deg,#15171A 0 2px,#121417 2px 4px)}
+.card.pulse{--accent:var(--cyan)}
+.card.cadran{--accent:var(--orange)}
+.card.coffre{--accent:var(--brass)}
+.card .eyebrow.acc{color:var(--accent)}
+.ring-arc{transition:stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)}
+.needle{transform-origin:100px 118px;transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.dial{transform-origin:100px 100px;transition:transform 2s cubic-bezier(.2,.7,.2,1)}
+
+/* atelier */
+.tools{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+.tool{padding:34px 30px;border-right:1px solid var(--line);display:flex;flex-direction:column;transition:background .3s}
+.tool:last-child{border-right:0}
+.tool:hover{background:var(--panel-2)}
+.tool .ico{width:44px;height:44px;border-radius:12px;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--champagne);background:rgba(255,255,255,.02)}
+.tool h3{font-size:21px;margin-top:22px}
+.tool p{color:var(--muted);font-size:14.5px;margin-top:10px}
+.tool .meta{margin-top:auto;padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--text)}
+.stack{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+
+/* labs */
+.labs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.lab{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.015);transition:border-color .25s,background .25s}
+.lab:hover{border-color:var(--line-2);background:rgba(255,255,255,.035)}
+.lab b{display:block;font-weight:600;font-size:15.5px}
+.lab span{font-size:13.5px;color:var(--muted)}
+.lab .go{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;flex:none;transition:transform .25s,background .25s,color .25s}
+.lab:hover .go{transform:rotate(-45deg);background:var(--text);color:var(--bg)}
+
+/* approche */
+.approach{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start}
+.quote{font-family:var(--serif);font-size:clamp(28px,3vw,40px);line-height:1.18;letter-spacing:-.01em}
+.quote em{color:var(--champagne)}
+.sig{margin-top:30px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:14px}
+.sig b{color:var(--text);display:block;font-weight:600}
+.principles{display:grid;border-top:1px solid var(--line)}
+.pr{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:24px 0;border-bottom:1px solid var(--line)}
+.pr .k{font-family:var(--mono);font-size:12px;color:var(--green);padding-top:4px}
+.pr b{font-weight:600;font-size:17px}
+.pr p{color:var(--muted);font-size:14.5px;margin-top:6px}
+.techs{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+
+/* contact */
+.contact{margin:140px 0 0;border:1px solid var(--line);border-radius:28px;padding:80px 64px;position:relative;overflow:hidden;background:radial-gradient(70% 90% at 50% 120%,rgba(61,220,132,.13),transparent 70%),var(--panel);text-align:center}
+.contact h2{font-size:clamp(38px,5.4vw,68px);max-width:820px;margin:18px auto 0}
+.contact h2 .serif{color:var(--champagne)}
+.contact p{color:var(--muted);max-width:520px;margin:22px auto 0}
+.contact .ctas{display:flex;gap:12px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+.coords{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px;border-top:1px solid var(--line);text-align:left}
+.coord{padding:24px 24px 0;border-right:1px solid var(--line)}
+.coord:last-child{border-right:0}
+.coord .eyebrow{font-size:11px}
+.coord a,.coord div.v{display:block;margin-top:8px;font-weight:600;font-size:15px}
+.coord a:hover{color:var(--green)}
+
+footer{padding:60px 0 50px;color:var(--dim);font-size:13px}
+.foot-in{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:30px}
+.foot-in .legal{max-width:560px;font-size:12px;line-height:1.7}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .dot{animation:none}
+  .ring-arc,.needle,.dial{transition:none}
+}
+
+@media (max-width:980px){
+  .nav-links{display:none}
+  .flag-top{grid-template-columns:1fr;gap:40px;padding:44px 32px 0}
+  .shot-zone{padding:40px 32px 40px}
+  .suite{grid-template-columns:1fr}
+  .tools{grid-template-columns:1fr}
+  .tool{border-right:0;border-bottom:1px solid var(--line)}
+  .tool:last-child{border-bottom:0}
+  .labs{grid-template-columns:1fr}
+  .approach{grid-template-columns:1fr;gap:50px}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .fact:nth-child(2){border-right:0}
+  .fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .hero{padding-top:140px}
+  .section{padding-top:100px}
+  .facts{margin-top:70px}
+  .fact{padding:22px 16px}
+  .fact .n{font-size:34px}
+  .flag-top{padding:32px 20px 0}
+  .shot-zone{padding:32px 20px 24px}
+  .flagship,.contact{border-radius:20px}
+  .contact{padding:56px 20px 40px}
+  .coords{grid-template-columns:1fr}
+  .coord{border-right:0;border-bottom:1px solid var(--line);padding:18px 4px}
+  .coord:last-child{border-bottom:0}
+  .nav-cta{display:none}
+  .card .visual{height:200px}
+  .flag-top h3{font-size:27px}
+  .section-head{gap:18px;margin-bottom:40px}
+}
+</style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body>
+<div class="halo"></div>
+<div class="grid-lines"></div>
 
-    <!-- Header / Intro -->
-    <header class="container mx-auto px-6 py-16 text-center md:text-left">
-        <div class="max-w-4xl mx-auto">
-            <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-cyan-400 uppercase bg-cyan-900/30 rounded-full border border-cyan-800">
-                Développeur & Technicien
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
-                Bonjour, je suis <span class="gradient-text">Ludo</span>.
-            </h1>
-            <p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
-                Passionné par l'électronique, la réparation audio et le développement web.
-                Voici ma collection d'outils numériques conçus pour résoudre des problèmes réels.
-            </p>
-            
-            <div class="mt-8 flex gap-4 justify-center md:justify-start">
-                <a href="https://github.com/lerapeurdu62280-debug" target="_blank" class="px-6 py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-slate-200 transition">
-                    Mon Profil GitHub
-                </a>
-                <a href="mailto:contact@example.com" class="px-6 py-3 border border-slate-700 text-slate-300 font-bold rounded-lg hover:bg-slate-800 transition">
-                    Me Contacter
-                </a>
-            </div>
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand"><span class="mono-mark">LT</span>S.O.S INFO LUDO</a>
+    <div class="nav-links">
+      <a href="#phare">Logiciel phare</a>
+      <a href="#suite">La suite</a>
+      <a href="#atelier">Atelier</a>
+      <a href="#approche">Approche</a>
+    </div>
+    <a href="#contact" class="btn btn-ghost btn-sm nav-cta">Me contacter <span class="arrow">→</span></a>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="reveal"><span class="status-pill"><span class="dot"></span><b>Nouveau</b> AndroidTvPcIsoBuilder 2.0 est disponible</span></div>
+  <h1 class="reveal d1">Des logiciels <span class="serif">pensés à l'établi,</span> pas en salle de réunion.</h1>
+  <p class="lead reveal d2">Je suis Ludovic Tourniquet, technicien informatique à Boulogne-sur-Mer. Je conçois des logiciels Windows qui règlent les problèmes que je rencontre chaque jour en atelier, puis je les peaufine jusqu'à ce qu'ils soient simples pour tout le monde.</p>
+  <div class="ctas reveal d3">
+    <a href="#phare" class="btn btn-primary">Découvrir les logiciels <span class="arrow">→</span></a>
+    <a href="https://github.com/lerapeurdu62280-debug/AndroidTvPcIsoBuilder-Download/releases/latest" target="_blank" rel="noopener" class="btn btn-ghost">Télécharger la version 2.0</a>
+  </div>
+
+  <div class="facts reveal">
+    <div class="fact"><div class="n">2021</div><div class="l">Technicien indépendant depuis</div></div>
+    <div class="fact"><div class="n">7</div><div class="l">Logiciels présentés ici</div></div>
+    <div class="fact"><div class="n">100&nbsp;%</div><div class="l">Interfaces en français</div></div>
+    <div class="fact"><div class="n">Win&nbsp;10/11</div><div class="l">Aucun prérequis à installer</div></div>
+  </div>
+</header>
+
+<!-- ===================== PHARE ===================== -->
+<section class="section wrap" id="phare">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow">01 — Logiciel phare</div>
+      <h2>Un vieux PC devient un <span class="serif">boîtier Android TV.</span></h2>
+    </div>
+    <p>Le dernier-né, et celui qui donne le ton à tout le reste&nbsp;: un assistant en six étapes, un résultat qui démarre comme un appareil du commerce.</p>
+  </div>
+
+  <article class="flagship reveal">
+    <div class="flag-top">
+      <div>
+        <div class="eyebrow">Personnalisation d'images Android TV</div>
+        <h3>AndroidTvPcIsoBuilder <span class="serif">2.0</span></h3>
+        <p class="desc">Choisissez une image Android TV, ajoutez vos applications, votre Wi-Fi et votre logo&nbsp;: le logiciel crée une clé USB ou une ISO qui démarre directement sur votre logo, puis sur l'accueil Android TV, sans aucun menu ni texte.</p>
+        <div class="tags">
+          <span class="tag on">v2.0.0</span>
+          <span class="tag">Windows 10 / 11</span>
+          <span class="tag">WPF · .NET</span>
+          <span class="tag">Installeur + portable</span>
         </div>
-    </header>
-
-    <!-- Projects Grid -->
-    <main class="container mx-auto px-6 py-12 flex-grow">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-2xl font-bold mb-8 text-slate-200 border-b border-slate-800 pb-4">Mes Projets Récents</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                <!-- Projet 1 : AudioTech -->
-                <a href="https://lerapeurdu62280-debug.github.io/SOS-INFO-LUDO/" target="_blank" class="card bg-slate-800 p-8 rounded-2xl border border-slate-700 group block relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
-                        <svg width="100" height="100" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <div class="text-xs font-bold text-blue-400 mb-2 uppercase tracking-wide">Maintenance & Audio</div>
-                    <h3 class="text-2xl font-bold text-white mb-3">AudioTech ToolKit</h3>
-                    <p class="text-slate-400 mb-6 line-clamp-2">Une station de travail complète pour le diagnostic d'amplificateurs (Ibiza AMP300). Inclut générateur de fréquences, calculs et sécurité.</p>
-                    <span class="inline-flex items-center text-blue-300 font-semibold group-hover:translate-x-2 transition">
-                        Lancer l'outil →
-                    </span>
-                </a>
-
-                <!-- Projet 2 : SecurePass -->
-                <a href="https://lerapeurdu62280-debug.github.io/SecurePass-Pro/" target="_blank" class="card bg-slate-800 p-8 rounded-2xl border border-slate-700 group block relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
-                        <svg width="100" height="100" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <div class="text-xs font-bold text-emerald-400 mb-2 uppercase tracking-wide">Cybersécurité</div>
-                    <h3 class="text-2xl font-bold text-white mb-3">SecurePass Pro</h3>
-                    <p class="text-slate-400 mb-6 line-clamp-2">Générateur de mots de passe de qualité militaire avec analyseur de force en temps réel. Style Cyberpunk.</p>
-                    <span class="inline-flex items-center text-emerald-300 font-semibold group-hover:translate-x-2 transition">
-                        Générer un mot de passe →
-                    </span>
-                </a>
-
-                <!-- Projet 3 : ZenFocus -->
-                <a href="https://lerapeurdu62280-debug.github.io/ZenFocus-Timer/" target="_blank" class="card bg-slate-800 p-8 rounded-2xl border border-slate-700 group block relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
-                        <svg width="100" height="100" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-                    </div>
-                    <div class="text-xs font-bold text-amber-400 mb-2 uppercase tracking-wide">Productivité</div>
-                    <h3 class="text-2xl font-bold text-white mb-3">ZenFocus Timer</h3>
-                    <p class="text-slate-400 mb-6 line-clamp-2">Minuteur Pomodoro minimaliste avec générateur de Bruit Brun intégré pour une concentration maximale.</p>
-                    <span class="inline-flex items-center text-amber-300 font-semibold group-hover:translate-x-2 transition">
-                        Se concentrer →
-                    </span>
-                </a>
-
-                <!-- Projet 4 : Neon Snake -->
-                <a href="https://lerapeurdu62280-debug.github.io/Neon-Snake/" target="_blank" class="card bg-slate-800 p-8 rounded-2xl border border-slate-700 group block relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
-                        <svg width="100" height="100" fill="currentColor"><rect x="2" y="2" width="20" height="20"/></svg>
-                    </div>
-                    <div class="text-xs font-bold text-purple-400 mb-2 uppercase tracking-wide">Jeu Vidéo</div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Neon Snake Arcade</h3>
-                    <p class="text-slate-400 mb-6 line-clamp-2">Une version rétro-futuriste du jeu Snake développée en JavaScript pur avec gestion des High Scores.</p>
-                    <span class="inline-flex items-center text-purple-300 font-semibold group-hover:translate-x-2 transition">
-                        Jouer maintenant →
-                    </span>
-                </a>
-
-            </div>
+        <div class="flag-ctas">
+          <a href="https://github.com/lerapeurdu62280-debug/AndroidTvPcIsoBuilder-Download/releases/latest" target="_blank" rel="noopener" class="btn btn-green">Télécharger <span class="arrow">→</span></a>
+          <a href="https://github.com/lerapeurdu62280-debug/AndroidTvPcIsoBuilder-Download" target="_blank" rel="noopener" class="btn btn-ghost">Voir la présentation complète</a>
         </div>
-    </main>
+      </div>
+      <ul class="flag-list">
+        <li><span class="k">01</span><div><b>Un démarrage digne d'un boîtier</b><span>Aucun menu à l'écran&nbsp;: votre logo de l'allumage jusqu'à Android TV.</span></div></li>
+        <li><span class="k">02</span><div><b>Applications prêtes à l'emploi</b><span>VLC, Kodi, SmartTube en un clic, ou vos propres APK par glisser-déposer.</span></div></li>
+        <li><span class="k">03</span><div><b>Réglé d'avance</b><span>Wi-Fi enregistré, français et clavier AZERTY, résolution jusqu'à la 4K.</span></div></li>
+        <li><span class="k">04</span><div><b>Clé USB ou disque dur</b><span>Écriture directe sur clé, mémoire persistante, installation sur le PC.</span></div></li>
+      </ul>
+    </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-slate-900 py-8 text-center text-slate-500 text-sm">
-        <p>© 2026 SOS INFO LUDO. Tous droits réservés.</p>
-        <p class="mt-2">Développé avec React, Tailwind & Passion.</p>
-    </footer>
+    <div class="shot-zone">
+      <div class="shot-tabs" role="tablist" aria-label="Captures d'écran">
+        <button class="shot-tab" role="tab" aria-selected="true" data-src="assets/01-accueil.png" data-alt="Écran d'accueil d'AndroidTvPcIsoBuilder">Accueil</button>
+        <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/04-applications.png" data-alt="Étape Applications d'AndroidTvPcIsoBuilder">Applications</button>
+        <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/07-compilation.png" data-alt="Création de l'image en direct">Création en direct</button>
+      </div>
+      <div class="window"><img id="shot" src="assets/01-accueil.png" alt="Écran d'accueil d'AndroidTvPcIsoBuilder" width="1434" height="942"></div>
+    </div>
+  </article>
+</section>
 
+<!-- ===================== SUITE ===================== -->
+<section class="section wrap" id="suite">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow">02 — La suite atelier</div>
+      <h2>Trois logiciels, <span class="serif">trois caractères.</span></h2>
+    </div>
+    <p>Treize petits utilitaires réunis en trois produits cohérents. Chacun a sa propre identité visuelle, taillée pour son usage.</p>
+  </div>
+
+  <div class="suite">
+    <!-- PULSE -->
+    <article class="card pulse reveal">
+      <div class="visual v-pulse" aria-hidden="true">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="74" fill="none" stroke="rgba(53,214,240,.12)" stroke-width="10"/>
+          <circle class="ring-arc" cx="100" cy="100" r="74" fill="none" stroke="#35D6F0" stroke-width="10" stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="465" data-to="37" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="58" fill="none" stroke="rgba(255,255,255,.06)" stroke-dasharray="2 5"/>
+          <text x="100" y="104" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="38" font-weight="500" fill="#EAF9FC">92</text>
+          <text x="100" y="128" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" letter-spacing="2" fill="#35D6F0">SANTÉ PC</text>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="eyebrow acc">Maintenance PC</div>
+        <h3>Pulse</h3>
+        <p>Le cockpit de maintenance&nbsp;: un score de santé en direct, et tout ce qu'il faut pour remettre un PC d'aplomb.</p>
+        <ul>
+          <li>Processeur, mémoire, températures, disques, réseau</li>
+          <li>Nettoyage des fichiers inutiles</li>
+          <li>Réglages d'optimisation Windows</li>
+        </ul>
+        <div class="foot"><span>ELECTRON</span><span class="badge ok">Fonctionnel</span></div>
+      </div>
+    </article>
+
+    <!-- CADRAN -->
+    <article class="card cadran reveal d1">
+      <div class="visual v-cadran" aria-hidden="true">
+        <svg width="220" height="170" viewBox="0 0 200 150">
+          <path d="M30 118 A70 70 0 0 1 170 118" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M30 118 A70 70 0 0 1 170 118" fill="none" stroke="#E8722C" stroke-width="12" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="70" opacity=".9"/>
+          <g stroke="rgba(255,255,255,.35)" stroke-width="1.5">
+            <line x1="100" y1="36" x2="100" y2="44"/><line x1="42" y1="60" x2="48" y2="65"/><line x1="158" y1="60" x2="152" y2="65"/><line x1="22" y1="118" x2="30" y2="118"/><line x1="178" y1="118" x2="170" y2="118"/>
+          </g>
+          <line class="needle" x1="100" y1="118" x2="100" y2="58" stroke="#F4EFE8" stroke-width="3" stroke-linecap="round" style="transform:rotate(-90deg)" data-to="42"/>
+          <circle cx="100" cy="118" r="8" fill="#1B1B1B" stroke="#E8722C" stroke-width="2.5"/>
+          <text x="100" y="146" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" letter-spacing="2" fill="#E8722C">ATELIER · 12 TICKETS</text>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="eyebrow acc">Gestion d'atelier</div>
+        <h3>Cadran</h3>
+        <p>Le tableau de bord du réparateur&nbsp;: réparations, clients, stock et caisse, réunis dans un seul outil.</p>
+        <ul>
+          <li>Suivi des réparations en colonnes</li>
+          <li>Devis et factures PDF avec QR code</li>
+          <li>Stock, caisse et 19 fournisseurs intégrés</li>
+        </ul>
+        <div class="foot"><span>ELECTRON</span><span class="badge ok">Fonctionnel</span></div>
+      </div>
+    </article>
+
+    <!-- COFFRE -->
+    <article class="card coffre reveal d2">
+      <div class="visual v-coffre" aria-hidden="true">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="brass" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#E9CD86"/><stop offset=".55" stop-color="#C9A24B"/><stop offset="1" stop-color="#7A5E22"/></radialGradient>
+            <radialGradient id="steel" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#3A3F46"/><stop offset="1" stop-color="#15181C"/></radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="78" fill="url(#steel)" stroke="rgba(201,162,75,.45)" stroke-width="2"/>
+          <g class="dial" data-to="-128">
+            <circle cx="100" cy="100" r="60" fill="none" stroke="url(#brass)" stroke-width="12"/>
+            <g stroke="#1A1409" stroke-width="1.6">
+              <line x1="100" y1="42" x2="100" y2="52"/><line x1="158" y1="100" x2="148" y2="100"/><line x1="100" y1="158" x2="100" y2="148"/><line x1="42" y1="100" x2="52" y2="100"/>
+              <line x1="141" y1="59" x2="135" y2="65"/><line x1="141" y1="141" x2="135" y2="135"/><line x1="59" y1="141" x2="65" y2="135"/><line x1="59" y1="59" x2="65" y2="65"/>
+            </g>
+          </g>
+          <circle cx="100" cy="100" r="34" fill="url(#brass)"/>
+          <circle cx="100" cy="100" r="26" fill="none" stroke="rgba(26,20,9,.35)"/>
+          <polygon points="100,14 94,26 106,26" fill="#C9A24B"/>
+        </svg>
+      </div>
+      <div class="body">
+        <div class="eyebrow acc">Récupération &amp; sécurité</div>
+        <h3>Coffre</h3>
+        <p>La chambre forte des données&nbsp;: récupérer ce qui semblait perdu, et garder la machine à l'abri.</p>
+        <ul>
+          <li>Récupération de données NTFS et FAT32</li>
+          <li>Santé des disques (SMART)</li>
+          <li>Protection et analyse antimalware</li>
+        </ul>
+        <div class="foot"><span>ELECTRON</span><span class="badge ok">Fonctionnel</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== ATELIER ===================== -->
+<section class="section wrap" id="atelier">
+  <div class="section-head reveal">
+    <div>
+      <div class="eyebrow">03 — Outils spécialisés</div>
+      <h2>Pour les tâches <span class="serif">que personne n'outille.</span></h2>
+    </div>
+    <p>Des logiciels nés d'un besoin précis en atelier, construits en C# et WinUI 3.</p>
+  </div>
+
+  <div class="tools reveal">
+    <article class="tool">
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></div>
+      <h3>WinForge Studio</h3>
+      <p>Construit des ISO Windows sur mesure&nbsp;: applications superflues retirées, réglages optimisés, pilotes injectés, installation automatisée.</p>
+      <div class="meta"><a href="https://github.com/lerapeurdu62280-debug/WinForgeStudio" target="_blank" rel="noopener" class="link">Voir sur GitHub <span class="arrow">→</span></a><span class="badge dev">En développement</span></div>
+    </article>
+    <article class="tool">
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M6 21h12M9 9h6M8 13h8"/></svg></div>
+      <h3>T-CON Master Pro</h3>
+      <p>Diagnostic et réparation des cartes T-CON de téléviseurs&nbsp;: base de cartes, analyse de pannes, suivi des réparations, export PDF et Excel.</p>
+      <div class="meta"><span class="stack">WINUI 3 · .NET 8</span><span class="badge">Usage atelier</span></div>
+    </article>
+    <article class="tool">
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+      <h3>RepairPost Studio</h3>
+      <p>Rédige les publications Facebook de l'atelier grâce à l'IA, à partir d'une veille d'actualités tech en français.</p>
+      <div class="meta"><span class="stack">WINUI 3 · GEMINI</span><span class="badge">Usage atelier</span></div>
+    </article>
+  </div>
+
+  <div class="section-head reveal" style="margin:90px 0 28px">
+    <div>
+      <div class="eyebrow muted">Laboratoire web</div>
+    </div>
+  </div>
+  <div class="labs reveal">
+    <a class="lab" href="https://lerapeurdu62280-debug.github.io/AudioTech_ToolKit/" target="_blank" rel="noopener"><div><b>AudioTech ToolKit</b><span>Diagnostic d'amplificateurs audio</span></div><span class="go">↗</span></a>
+    <a class="lab" href="https://lerapeurdu62280-debug.github.io/SecurePass-Pro/" target="_blank" rel="noopener"><div><b>SecurePass Pro</b><span>Générateur de mots de passe</span></div><span class="go">↗</span></a>
+    <a class="lab" href="https://lerapeurdu62280-debug.github.io/Neon-Snake/" target="_blank" rel="noopener"><div><b>Neon Snake</b><span>Jeu d'arcade rétro</span></div><span class="go">↗</span></a>
+  </div>
+</section>
+
+<!-- ===================== APPROCHE ===================== -->
+<section class="section wrap" id="approche">
+  <div class="approach">
+    <div class="reveal">
+      <div class="eyebrow">04 — Approche</div>
+      <p class="quote" style="margin-top:22px">«&nbsp;Chaque logiciel commence par une panne que j'ai eue entre les mains. <em>Il n'est fini que lorsqu'un client pourrait s'en servir sans moi.</em>&nbsp;»</p>
+      <div class="sig"><span class="mono-mark">LT</span><div><b>Ludovic Tourniquet</b>Fondateur de S.O.S INFO LUDO</div></div>
+    </div>
+    <div class="reveal d1">
+      <div class="principles">
+        <div class="pr"><span class="k">01</span><div><b>Le terrain d'abord</b><p>Des besoins réels d'atelier&nbsp;: réparation de PC, de consoles, de téléviseurs et de smartphones.</p></div></div>
+        <div class="pr"><span class="k">02</span><div><b>Testé en conditions réelles</b><p>Chaque fonction annoncée est essayée pour de vrai avant d'être présentée.</p></div></div>
+        <div class="pr"><span class="k">03</span><div><b>Simple à l'écran</b><p>Des assistants guidés, en français, pensés pour ne jamais laisser l'utilisateur deviner.</p></div></div>
+      </div>
+      <div class="techs">
+        <span class="tag">C# · .NET</span><span class="tag">WPF</span><span class="tag">WinUI 3</span><span class="tag">Electron</span><span class="tag">Next.js</span><span class="tag">PowerShell</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<div class="wrap" id="contact">
+  <section class="contact reveal">
+    <div class="eyebrow">05 — Contact</div>
+    <h2>Un projet, une panne, <span class="serif">une idée d'outil&nbsp;?</span></h2>
+    <p>Pour une réparation, un logiciel ou une question sur l'un de mes outils, écrivez-moi ou passez à l'atelier.</p>
+    <div class="ctas">
+      <a href="mailto:s.o.sinfoludo@gmail.com" class="btn btn-green">Écrire un e-mail <span class="arrow">→</span></a>
+      <a href="https://lerapeurdu62280-debug.github.io/SOS-INFO-LUDO-Site/" target="_blank" rel="noopener" class="btn btn-ghost">Site de l'atelier</a>
+      <a href="https://github.com/lerapeurdu62280-debug" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    </div>
+    <div class="coords">
+      <div class="coord"><div class="eyebrow muted">E-mail</div><a href="mailto:s.o.sinfoludo@gmail.com">s.o.sinfoludo@gmail.com</a></div>
+      <div class="coord"><div class="eyebrow muted">Téléphone</div><a href="tel:+33659590515">06 59 59 05 15</a></div>
+      <div class="coord"><div class="eyebrow muted">Atelier</div><div class="v">19 rue Leuliette,<br><span class="nw">62200 Boulogne-sur-Mer</span></div></div>
+    </div>
+  </section>
+</div>
+
+<footer class="wrap">
+  <div class="foot-in">
+    <div>© <span id="y">2026</span> S.O.S INFO LUDO — Ludovic Tourniquet.<br>Technicien informatique indépendant, Boulogne-sur-Mer.</div>
+    <div class="legal">Logiciels propriétaires, tous droits réservés. Android, Android TV et Google TV sont des marques de Google LLC&nbsp;; Windows est une marque de Microsoft Corporation. Ces logiciels sont indépendants et ne sont affiliés à aucune de ces sociétés.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>20)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  document.getElementById('y').textContent=new Date().getFullYear();
+
+  // Onglets de captures
+  var shot=document.getElementById('shot');
+  document.querySelectorAll('.shot-tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      if(t.getAttribute('aria-selected')==='true')return;
+      document.querySelectorAll('.shot-tab').forEach(function(o){o.setAttribute('aria-selected','false')});
+      t.setAttribute('aria-selected','true');
+      shot.classList.add('fade');
+      var img=new Image();img.onload=function(){shot.src=t.dataset.src;shot.alt=t.dataset.alt;shot.classList.remove('fade')};img.src=t.dataset.src;
+    });
+  });
+
+  // Animations d'apparition + jauges
+  function animate(el){
+    el.classList.add('in');
+    el.querySelectorAll('.ring-arc').forEach(function(a){a.style.strokeDashoffset=a.dataset.to});
+    el.querySelectorAll('.needle').forEach(function(n){n.style.transform='rotate('+n.dataset.to+'deg)'});
+    el.querySelectorAll('.dial').forEach(function(d){d.style.transform='rotate('+d.dataset.to+'deg)'});
+  }
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(animate);return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){animate(e.target);io.unobserve(e.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>
